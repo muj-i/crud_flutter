@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../../utils/logger.dart';
 import '../multipart_converter.dart';
 import '../network_response.dart';
-
-
-
 
 class PostRequest {
   static Dio dio = Dio();
@@ -35,6 +34,19 @@ class PostRequest {
               await MultipartConverter().imageToMultipartConverter(image)));
         }
       }
+
+      dio.interceptors.add(
+        AwesomeDioInterceptor(
+          // Disabling headers and timeout would minimize the logging output.
+          // Optional, defaults to true
+          logRequestTimeout: false,
+          logRequestHeaders: false,
+          logResponseHeaders: false,
+
+          // Optional, defaults to the 'log' function in the 'dart:developer' package.
+          logger: debugPrint,
+        ),
+      );
 
       Response response = await dio.post(
         url,

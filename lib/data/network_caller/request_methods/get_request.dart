@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
@@ -24,9 +23,9 @@ class GetRequest {
         AwesomeDioInterceptor(
           // Disabling headers and timeout would minimize the logging output.
           // Optional, defaults to true
-          logRequestTimeout: false,
-          logRequestHeaders: false,
-          logResponseHeaders: false,
+          logRequestTimeout: true,
+          logRequestHeaders: true,
+          logResponseHeaders: true,
 
           // Optional, defaults to the 'log' function in the 'dart:developer' package.
           logger: debugPrint,
