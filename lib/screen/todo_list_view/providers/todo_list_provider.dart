@@ -1,5 +1,4 @@
 import 'package:crud_flutter/core/connectivity_checker/connectivity_checker.dart';
-import 'package:crud_flutter/screen/todo_list_view/models/todo_list_model.dart';
 import 'package:crud_flutter/screen/todo_list_view/repository/todo_list_repo.dart';
 
 import '../../../core/enum/screen_state.dart';
