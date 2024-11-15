@@ -24,8 +24,8 @@ class GetRequest {
           // Disabling headers and timeout would minimize the logging output.
           // Optional, defaults to true
           logRequestTimeout: true,
-          logRequestHeaders: true,
-          logResponseHeaders: true,
+          logRequestHeaders: false,
+          logResponseHeaders: false,
 
           // Optional, defaults to the 'log' function in the 'dart:developer' package.
           logger: debugPrint,

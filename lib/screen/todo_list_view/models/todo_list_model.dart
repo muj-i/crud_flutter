@@ -1,15 +1,15 @@
 class TodoListModel {
   String? message;
-  List<Data>? data;
+  List<ListData>? data;
 
   TodoListModel({this.message, this.data});
 
   TodoListModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ListData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(ListData.fromJson(v));
       });
     }
   }
@@ -24,17 +24,19 @@ class TodoListModel {
   }
 }
 
-class Data {
+class ListData {
   String? title;
   String? description;
   String? status;
+  String? id;
 
-  Data({this.title, this.description, this.status});
+  ListData({this.title, this.description, this.status, this.id});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ListData.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     description = json['description'];
     status = json['status'];
+    id = json['id'].toString();
   }
 
   Map<String, dynamic> toJson() {

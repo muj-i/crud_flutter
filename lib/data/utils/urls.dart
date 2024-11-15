@@ -4,5 +4,7 @@ class Urls {
 
   static const String createTodo = '$baseUrl/todo/create-todo';
   static const String getTodoList = '$baseUrl/todo/get-todo-list';
-
+  static String updateTodo(String id) => '$baseUrl/todo/update-todo/$id';
+  static String deleteTodo(String id) => '$baseUrl/todo/delete-todo/$id';
+  static String deleteAllTodo = '$baseUrl/todo/delete-all-todo';
 }

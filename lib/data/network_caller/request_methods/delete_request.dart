@@ -13,7 +13,7 @@ class DeleteRequest {
 
   static Future<NetworkResponse> execute(
     String url,
-    Map<String, dynamic> body,
+    // Map<String, dynamic> body,
   ) async {
     try {
       // check if access token is expired
@@ -29,8 +29,8 @@ class DeleteRequest {
           // Disabling headers and timeout would minimize the logging output.
           // Optional, defaults to true
           logRequestTimeout: true,
-          logRequestHeaders: true,
-          logResponseHeaders: true,
+          logRequestHeaders: false,
+          logResponseHeaders: false,
 
           // Optional, defaults to the 'log' function in the 'dart:developer' package.
           logger: debugPrint,
@@ -45,7 +45,7 @@ class DeleteRequest {
             // 'Authorization': 'Bearer ${TokenKeeper.accessToken.toString()}'
           },
         ),
-        data: jsonEncode(body),
+        // data: jsonEncode(body),
       );
 
       logger.w(response.statusCode.toString());
@@ -62,7 +62,8 @@ class DeleteRequest {
         // if the error is due to token expiry (401), refresh token and retry the request
         logger.e(e.response?.statusCode.toString());
         // await RefreshTokenService.refreshAccessToken();
-        return execute(url, body); // retry the original request
+        // return execute(url, body); // retry the original request
+        return NetworkResponse(false, e.response!.statusCode!, null);
       } else if (e is DioException && e.response?.statusCode == 404) {
         logger.e(e.response?.statusCode.toString());
         return NetworkResponse(false, e.response!.statusCode!, null);

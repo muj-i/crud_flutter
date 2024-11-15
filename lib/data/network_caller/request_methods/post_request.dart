@@ -39,7 +39,7 @@ class PostRequest {
         AwesomeDioInterceptor(
           // Disabling headers and timeout would minimize the logging output.
           // Optional, defaults to true
-          logRequestTimeout: false,
+          logRequestTimeout: true,
           logRequestHeaders: false,
           logResponseHeaders: false,
 
@@ -69,8 +69,9 @@ class PostRequest {
         // if the error is due to token expiry (401), refresh token and retry the request
         logger.e(e.response?.statusCode.toString());
         // await RefreshTokenService.refreshAccessToken();
-        return execute(url, body,
-            images: images, isImage: isImage); // retry the original request
+        // return execute(url, body,
+        //     images: images, isImage: isImage); // retry the original request
+        return NetworkResponse(false, e.response!.statusCode!, null);
       } else if (e is DioException && e.response?.statusCode == 404) {
         logger.e(e.response?.statusCode.toString());
         return NetworkResponse(false, e.response!.statusCode!, null);
