@@ -73,6 +73,7 @@ class TodoListProvider extends BaseChangeNotifier {
     final body = ListData(
       title: titleController.text.trim(),
       description: descriptionController.text.trim(),
+      status: 'todo',
     );
 
     final res = await TodoListRepo.createTodo(body);
