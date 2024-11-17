@@ -1,3 +1,4 @@
+import 'package:crud_flutter/core/enum/screen_state.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/enum/todo_purpose.dart';
@@ -14,6 +15,17 @@ class AddOrUpdateTodoSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (purpose == TodoPurpose.EDIT) {
+        provider.titleController.text = provider.todoList[index].title;
+        provider.descriptionController.text =
+            provider.todoList[index].description;
+      }
+      if (purpose == TodoPurpose.ADD) {
+        provider.titleController.clear();
+        provider.descriptionController.clear();
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(purpose == TodoPurpose.ADD ? 'Add TODO' : 'Update TODO'),
@@ -44,6 +56,8 @@ class AddOrUpdateTodoSheet extends StatelessWidget {
         const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
+            provider.updateViewState(screenState: ScreenState.START_LOADING);
+            Navigator.pop(context);
             if (purpose == TodoPurpose.ADD) {
               provider.createTodo(context);
             } else {

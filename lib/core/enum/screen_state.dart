@@ -3,7 +3,6 @@
 enum ScreenState {
   DEFAULT,
   START_LOADING,
-  FINISH_LOADING,
   HAS_DATA,
   NO_DATA,
   NO_INTERNET,

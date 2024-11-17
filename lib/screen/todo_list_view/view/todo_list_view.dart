@@ -127,6 +127,7 @@ class _TodoListViewState extends ConsumerState<TodoListView> {
                 icon: const Icon(Icons.edit)),
             IconButton(
                 onPressed: () {
+                  provider.updateViewState(screenState: ScreenState.START_LOADING);
                   provider.deleteTodo(index);
                 },
                 icon: const Icon(Icons.delete)),

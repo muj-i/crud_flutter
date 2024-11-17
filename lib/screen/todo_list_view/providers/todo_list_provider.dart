@@ -108,7 +108,7 @@ class TodoListProvider extends BaseChangeNotifier {
     );
     if (res) {
       if (!isStatusUpdate) getTodoList();
-      if (!isStatusUpdate) Navigator.pop(context);
+      // if (!isStatusUpdate) Navigator.canPop(context);
       if (isStatusUpdate) log('Status updated');
     }
   }
